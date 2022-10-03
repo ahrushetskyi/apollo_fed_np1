@@ -1,0 +1,36 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0")
+
+type Action @federation__key(fields: "id") {
+  config: ActionConfig!
+  defaultTemplate: Template!
+  delay: Int!
+  id: ID!
+}
+
+union ActionConfig = ConfigOne | ConfigThree | ConfigTwo
+
+type ConfigOne {
+  id: ID!
+  otherTemplate: Template!
+  someTemplate: Template!
+}
+
+type ConfigThree {
+  id: ID!
+  wrongTemplate: Template!
+}
+
+type ConfigTwo {
+  id: ID!
+  leftTemplate: Template!
+  rightTemplate: Template!
+}
+
+type Query {
+  actions: [Action!]!
+}
+
+type Template @federation__extends @federation__key(fields: "id") {
+  id: ID!
+}

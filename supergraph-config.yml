@@ -1,0 +1,10 @@
+federation_version: 2
+subgraphs:
+  schemaA:
+    routing_url: http://localhost:5003/
+    schema:
+      file: ./schemaa_federation_sdl.graphql
+  schemaB:
+    routing_url: http://localhost:5004/
+    schema:
+      file: ./schemab_federation_sdl.graphql
